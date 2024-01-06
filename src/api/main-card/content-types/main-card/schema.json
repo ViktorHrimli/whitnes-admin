@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "main_cards",
+  "info": {
+    "singularName": "main-card",
+    "pluralName": "main-cards",
+    "displayName": "Main Card",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "categories": {
+      "type": "enumeration",
+      "enum": [
+        "Основна",
+        "Еротична",
+        "Дизайнерська",
+        "Шкіряна",
+        "Аксесуари"
+      ]
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description_form": {
+      "type": "text"
+    },
+    "colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.items-selects"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.items-price"
+    },
+    "addition": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.items-price"
+    }
+  }
+}

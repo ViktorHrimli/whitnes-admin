@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_elements_items_prices",
+  "info": {
+    "displayName": "Items Price"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger"
+    }
+  }
+}

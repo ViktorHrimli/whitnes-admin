@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_elements_items_selects",
+  "info": {
+    "displayName": "Items Selects"
+  },
+  "options": {},
+  "attributes": {
+    "item": {
+      "type": "string"
+    }
+  }
+}
