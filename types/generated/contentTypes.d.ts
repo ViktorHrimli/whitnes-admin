@@ -362,85 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCertificateCertificate extends Schema.CollectionType {
-  collectionName: 'certificates';
-  info: {
-    singularName: 'certificate';
-    pluralName: 'certificates';
-    displayName: 'Certificate';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    used: Attribute.Boolean;
-    title: Attribute.String;
-    price: Attribute.BigInteger;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::certificate.certificate',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::certificate.certificate',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMainCardMainCard extends Schema.CollectionType {
-  collectionName: 'main_cards';
-  info: {
-    singularName: 'main-card';
-    pluralName: 'main-cards';
-    displayName: 'Main Card';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    price: Attribute.Integer;
-    categories: Attribute.Enumeration<
-      [
-        '\u041E\u0441\u043D\u043E\u0432\u043D\u0430',
-        '\u0415\u0440\u043E\u0442\u0438\u0447\u043D\u0430',
-        '\u0414\u0438\u0437\u0430\u0439\u043D\u0435\u0440\u0441\u044C\u043A\u0430',
-        '\u0428\u043A\u0456\u0440\u044F\u043D\u0430',
-        '\u0410\u043A\u0441\u0435\u0441\u0443\u0430\u0440\u0438'
-      ]
-    >;
-    images: Attribute.Media;
-    description_form: Attribute.Text;
-    colors: Attribute.Component<'elements.items-selects', true>;
-    items: Attribute.Component<'elements.items-price', true>;
-    addition: Attribute.Component<'elements.items-price', true>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::main-card.main-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::main-card.main-card',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -652,6 +573,50 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -803,43 +768,78 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiCertificateCertificate extends Schema.CollectionType {
+  collectionName: 'certificates';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
+    singularName: 'certificate';
+    pluralName: 'certificates';
+    displayName: 'Certificate';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<{
-        min: 1;
-        max: 50;
-      }>;
-    code: Attribute.String & Attribute.Unique;
+    used: Attribute.Boolean;
+    title: Attribute.String;
+    price: Attribute.BigInteger;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::certificate.certificate',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::certificate.certificate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMainCardMainCard extends Schema.CollectionType {
+  collectionName: 'main_cards';
+  info: {
+    singularName: 'main-card';
+    pluralName: 'main-cards';
+    displayName: 'Main Card';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    price: Attribute.Integer;
+    categories: Attribute.Enumeration<
+      [
+        '\u041E\u0441\u043D\u043E\u0432\u043D\u0430',
+        '\u0415\u0440\u043E\u0442\u0438\u0447\u043D\u0430',
+        '\u0414\u0438\u0437\u0430\u0439\u043D\u0435\u0440\u0441\u044C\u043A\u0430',
+        '\u0428\u043A\u0456\u0440\u044F\u043D\u0430',
+        '\u0410\u043A\u0441\u0435\u0441\u0443\u0430\u0440\u0438'
+      ]
+    >;
+    images: Attribute.Media;
+    description_form: Attribute.Text;
+    colors: Attribute.Component<'elements.items-selects', true>;
+    items: Attribute.Component<'elements.items-price', true>;
+    addition: Attribute.Component<'elements.items-price', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-card.main-card',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::main-card.main-card',
       'oneToOne',
       'admin::user'
     > &
@@ -857,16 +857,16 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::certificate.certificate': ApiCertificateCertificate;
-      'api::main-card.main-card': ApiMainCardMainCard;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::certificate.certificate': ApiCertificateCertificate;
+      'api::main-card.main-card': ApiMainCardMainCard;
     }
   }
 }
